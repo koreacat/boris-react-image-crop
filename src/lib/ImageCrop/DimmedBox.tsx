@@ -12,7 +12,7 @@ interface DimmedBoxProps {
 
 const DimmedBox = ({ imgSize, setOffset, setCropBoxSize }: DimmedBoxProps) => {
   const getOffsetTop = () => {
-    return (window.innerHeight - 666) / 2 + 106 + (560 - imgSize.h) / 2;
+    return (window.innerHeight - 512) / 2 + (512 - imgSize.h) / 2;
   };
 
   const getOffsetLeft = () => {

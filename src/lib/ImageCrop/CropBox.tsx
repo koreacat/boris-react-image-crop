@@ -31,7 +31,7 @@ const CropBox = ({ imgSrc, imgSize, offset, setOffset, cropBoxSize, setCropBoxSi
   const getEdgeHeight = () => imgSize.h - cropBoxSize.h;
 
   const getOffsetTop = () => {
-    return (window.innerHeight - 666) / 2 + 106 + (560 - imgSize.h) / 2;
+    return (window.innerHeight - 512) / 2 + (512 - imgSize.h) / 2;
   };
 
   const getOffsetLeft = () => {
