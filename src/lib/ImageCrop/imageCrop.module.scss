@@ -1,0 +1,249 @@
+
+.imageCropArea {
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.imageArea {
+  position: relative;
+  background-color: #eee;
+  background-image: linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd),
+  linear-gradient(45deg, #ddd 25%, transparent 25%, transparent 75%, #ddd 75%, #ddd);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+.wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+
+  .cropArea {
+    position: relative;
+    display: block;
+  }
+}
+
+.imgArea {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: fit-content;
+  height: fit-content;
+
+  .imgBox {
+    display: block;
+    width: fit-content;
+    height: fit-content;
+  }
+}
+
+.dimmedBox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.5;
+  cursor: crosshair;
+  user-select: none;
+}
+
+.cropBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  outline: 1px solid #fff;
+
+  .viewBox {
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+
+    .viewImg {
+      display: block;
+    }
+  }
+
+  .dash {
+    position: absolute;
+    display: block;
+    border: 1px solid #fff;
+    opacity: 0.5;
+
+    &.w {
+      border-bottom-width: 1px;
+      border-top-width: 1px;
+      height: 33.33333%;
+      left: 0;
+      top: 33.33333%;
+      width: 100%;
+    }
+
+    &.h {
+      border-left-width: 1px;
+      border-right-width: 1px;
+      height: 100%;
+      left: 33.33333%;
+      top: 0;
+      width: 33.33333%;
+    }
+  }
+
+  .cross {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0.75;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: -3px;
+      display: block;
+      width: 7px;
+      height: 1px;
+      background-color: #eee;
+      content: ' ';
+    }
+
+    &:after {
+      position: absolute;
+      top: -3px;
+      left: 0;
+      display: block;
+      width: 1px;
+      height: 7px;
+      background-color: #eee;
+      content: ' ';
+    }
+  }
+
+  .moveBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.1;
+    user-select: none;
+    cursor: move;
+  }
+
+  .line {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.1;
+    background-color: #fff;
+
+    &.n {
+      top: -3px;
+      left: 0;
+      height: 5px;
+      cursor: n-resize;
+    }
+
+    &.e {
+      top: 0;
+      right: -3px;
+      width: 5px;
+      cursor: e-resize;
+    }
+
+    &.s {
+      left: 0;
+      bottom: -3px;
+      height: 5px;
+      cursor: s-resize;
+    }
+
+    &.w {
+      top: 0;
+      left: -3px;
+      width: 5px;
+      cursor: w-resize;
+    }
+  }
+
+  .point {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #121619;
+
+    &.nw {
+      top: -4px;
+      left: -4px;
+      cursor: nw-resize;
+    }
+
+    &.n {
+      display: none;
+      top: -3px;
+      left: 50%;
+      margin-left: -3px;
+      cursor: n-resize;
+    }
+
+    &.ne {
+      top: -4px;
+      right: -4px;
+      cursor: ne-resize;
+    }
+
+    &.e {
+      display: none;
+      top: 50%;
+      right: -3px;
+      margin-top: -3px;
+      cursor: e-resize;
+    }
+
+    &.se {
+      right: -4px;
+      bottom: -4px;
+      margin-top: -3px;
+      cursor: se-resize;
+    }
+
+    &.s {
+      display: none;
+      bottom: -3px;
+      left: 50%;
+      margin-left: -3px;
+      cursor: s-resize;
+    }
+
+    &.sw {
+      bottom: -4px;
+      left: -4px;
+      cursor: sw-resize;
+    }
+
+    &.w {
+      display: none;
+      top: 50%;
+      left: -3px;
+      margin-top: -3px;
+      cursor: w-resize;
+    }
+  }
+}
