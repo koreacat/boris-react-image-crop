@@ -33,7 +33,7 @@ var CropBox = function (_a) {
     var getEdgeWidth = function () { return imgSize.w - cropBoxSize.w; };
     var getEdgeHeight = function () { return imgSize.h - cropBoxSize.h; };
     var getOffsetTop = function () {
-        return (window.innerHeight - 666) / 2 + 106 + (560 - imgSize.h) / 2;
+        return (window.innerHeight - 512) / 2 + (512 - imgSize.h) / 2;
     };
     var getOffsetLeft = function () {
         return (window.innerWidth - imgSize.w) / 2;
