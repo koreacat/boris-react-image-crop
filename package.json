@@ -1,6 +1,6 @@
 {
   "name": "boris-react-image-crop",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "private": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
