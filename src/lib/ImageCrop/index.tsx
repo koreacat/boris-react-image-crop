@@ -18,6 +18,7 @@ interface ImageCropProps {
 const ImageCrop = ({ imgSrc, imgName = '', width = 512, height = 512, onClick }: ImageCropProps) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const cropAreaRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
   const [imgSize, setImgSize] = useState<Size>(ORIGIN_SIZE);
   const [cropBoxSize, setCropBoxSize] = useState<Size>(ORIGIN_SIZE);
   const [offset, setOffset] = useState<Point>(ORIGIN_POINT);
@@ -119,8 +120,9 @@ const ImageCrop = ({ imgSrc, imgName = '', width = 512, height = 512, onClick }:
             }}
           >
             <div className={cx('imgArea')}>
-              <div className={cx('imgBox')}>
+              <div className={cx('imgBox')} >
                 <img
+                  ref={imgRef}
                   className={cx('img')}
                   src={imgSrc}
                   style={{
@@ -131,9 +133,15 @@ const ImageCrop = ({ imgSrc, imgName = '', width = 512, height = 512, onClick }:
               </div>
             </div>
 
-            <DimmedBox imgSize={imgSize} setOffset={setOffset} setCropBoxSize={setCropBoxSize} />
+            <DimmedBox 
+              imgRef={imgRef} 
+              imgSize={imgSize} 
+              setOffset={setOffset} 
+              setCropBoxSize={setCropBoxSize} 
+            />
 
             <CropBox
+              imgRef={imgRef}
               imgSrc={imgSrc}
               imgSize={imgSize}
               offset={offset}

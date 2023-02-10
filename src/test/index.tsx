@@ -16,8 +16,6 @@ const Test = () => {
 
   return (
     <div>
-      <input type='file' value={[]} onChange={e => handleUpload(e.target.files?.[0])} />
-
       <ImageCrop
         imgSrc={cropImgScr}
         imgName={imgName}
@@ -27,6 +25,8 @@ const Test = () => {
       />
 
       {imgSrc && <img src={imgSrc} />}
+
+      <input type='file' value={[]} onChange={e => handleUpload(e.target.files?.[0])} />
     </div>
   )
 }

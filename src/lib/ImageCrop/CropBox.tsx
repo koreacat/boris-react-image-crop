@@ -16,6 +16,7 @@ function addPoints(p1: Point, p2: Point, minX = 0, minY = 0, maxX = 0, maxY = 0)
 }
 
 interface CropBoxProps {
+  imgRef: React.RefObject<HTMLImageElement>;
   imgSrc: string;
   imgSize: Size;
   offset: Point;
@@ -24,24 +25,31 @@ interface CropBoxProps {
   setCropBoxSize: (cropBoxSize: Size) => void;
 }
 
-const CropBox = ({ imgSrc, imgSize, offset, setOffset, cropBoxSize, setCropBoxSize }: CropBoxProps) => {
+const CropBox = ({ imgRef, imgSrc, imgSize, offset, setOffset, cropBoxSize, setCropBoxSize }: CropBoxProps) => {
   const lastMousePosRef = useRef<Point>(ORIGIN_POINT);
 
   const getEdgeWidth = () => imgSize.w - cropBoxSize.w;
   const getEdgeHeight = () => imgSize.h - cropBoxSize.h;
 
+  // 이미지의 좌상단 꼭지점
   const getOffsetTop = () => {
-    return (window.innerHeight - 512) / 2 + (512 - imgSize.h) / 2;
+    const el = imgRef.current;
+    const offset = el?.getBoundingClientRect().top || 0;
+    return offset;
   };
 
   const getOffsetLeft = () => {
-    return (window.innerWidth - imgSize.w) / 2;
+    const el = imgRef.current;
+    const offset = el?.getBoundingClientRect().left || 0;
+    return offset;
   };
 
   const startPan = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
     document.addEventListener('mousemove', moveCropBox);
     document.addEventListener('mouseup', stopPan);
+
+    // e.clientX, Y = 뷰포트 내에서의 클릭 지점
     lastMousePosRef.current = { x: e.clientX, y: e.clientY };
   };
 

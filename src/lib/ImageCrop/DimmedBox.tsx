@@ -5,22 +5,30 @@ import classnames from 'classnames/bind';
 const cx = classnames.bind(styles);
 
 interface DimmedBoxProps {
+  imgRef: React.RefObject<HTMLImageElement>;
   imgSize: Size;
   setOffset: (offset: ((prev: Point) => Point) | Point) => void;
   setCropBoxSize: (cropBoxSize: Size) => void;
 }
 
-const DimmedBox = ({ imgSize, setOffset, setCropBoxSize }: DimmedBoxProps) => {
+const DimmedBox = ({ imgRef, imgSize, setOffset, setCropBoxSize }: DimmedBoxProps) => {
+  // 이미지의 좌상단 꼭지점
   const getOffsetTop = () => {
-    return (window.innerHeight - 512) / 2 + (512 - imgSize.h) / 2;
+    const el = imgRef.current;
+    const offset = el?.getBoundingClientRect().top || 0;
+    return offset;
   };
 
   const getOffsetLeft = () => {
-    return (window.innerWidth - imgSize.w) / 2;
+    const el = imgRef.current;
+    const offset = el?.getBoundingClientRect().left || 0;
+    return offset;
   };
 
   const startSetCropBox = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
+
+    // e.clientX, Y = 뷰포트 내에서의 클릭 지점
     const startPoint = { x: e.clientX, y: e.clientY };
 
     const initCropBox = () => {
